@@ -225,7 +225,7 @@
                                   <p class="block antialiased font-sans text-base font-light leading-relaxed text-white my-2 font-normal">
                                     Une page d'acceuil + <br>
                                     4 à 6 pages catégories + <br>
-                                    Page complément  + <br>
+                                    Page complément   + <br>
                                     Une barre de recherche  <br>
                                   </p>
                                   <a href="{{ route('pack3') }}" class="bg-primary py-2 my-3 px-4 rounded-md transition-colors duration-300">
