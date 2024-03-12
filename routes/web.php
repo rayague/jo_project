@@ -3,8 +3,10 @@
 use App\Models\Avis;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PackController;
 use App\Http\Controllers\ViewsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\NotificationsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,9 +74,14 @@ Route::get('/Digital', [ViewsController::class, 'pack6'])->name('pack6');
 
 
 Route::get('/ajouter-un-pack', [ViewsController::class, 'addPack'])->name('addPack');
+Route::post('/ajouter-un-pack', [PackController::class, 'storePack'])->name('storePack');
+
 Route::get('/envoyer-une-notification', [ViewsController::class, 'sendNotifsClients'])->name('sendNotifsClients');
 Route::get('/voir-les-notifications-clients', [ViewsController::class, 'seeNotifsClients'])->name('seeNotifsClients');
+
 Route::get('/ajouter-une-formation', [ViewsController::class, 'addFormations'])->name('addFormations');
+Route::post('/ajouter-une-formation', [NotificationsController::class, 'storeFormations'])->name('storeFormations');
+
 Route::get('/Envoyer-une-notification-etudiant', [ViewsController::class, 'sendNotifsEtudiants'])->name('sendNotifsEtudiants');
 Route::get('/voir-notification-etudiants', [ViewsController::class, 'seeNotifsEtudiants'])->name('seeNotifsEtudiants');
 // Route::get('/Digital', [ViewsController::class, 'sendNotifsRedacteurs'])->name('sendNotifsRedacteurs');

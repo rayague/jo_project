@@ -108,9 +108,11 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><div>{{ Auth::user()->name }}</div></span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                @if(Auth::check())
+                                    <p class="mr-2 d-none d-lg-inline text-gray-600 small"> {{ Auth::user()->name }}</p>
+                                @else
+                                    <p class="mr-2 d-none d-lg-inline text-gray-600 small">Veuillez vous connecter.</p>
+                                @endif
                             </a>
 
                             <x-slot name="content">
@@ -156,21 +158,24 @@
                         <h1 class="h3 mb-0 text-gray-800">ETUDIANT</h1>
 
                     </div>
-
                     <!-- Content Row -->
                     <div class="row">
 
+                        @foreach ($notifications_etudiants as $notifications_etudiants )
+
+
                         <div class="card mx-auto my-4" style="width: 18rem;">
-                            <img src="{{ asset('assets/images/picture1.jpg') }}" class="card-img-top" alt="...">
+                            <img src="{{ asset('public/notifications_etudiants/' . $notifications_etudiants->image) }}" class="card-img-top" alt="...">
                             <div class="card-body">
-                              <h5 class="card-title">Card title</h5>
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <h5 class="card-title">{{ $notifications_etudiants->title }}Card title</h5>
+                                <p class="card-text">{{ $notifications_etudiants->contenu }}.</p>
                             </div>
                             <div class="card-body">
-                              <a href="#" class="card-link">Card link</a>
-                              {{-- <a href="#" class="card-link">Another link</a> --}}
+                                <a href="#" class="card-link">{{ $notifications_etudiants->link }}</a>
+                                {{-- <a href="#" class="card-link">Another link</a> --}}
                             </div>
                         </div>
+                        @endforeach
 
                         <div class="card mx-auto my-4" style="width: 18rem;">
                             <img src="{{ asset('assets/images/picture2.jpg') }}" class="card-img-top" alt="...">
@@ -183,101 +188,6 @@
                               <a href="#" class="card-link">Another link</a>
                             </div>
                         </div>
-
-                        <section class="container mx-auto px-8 py-8 lg:py-40">
-                            <h2 class="block antialiased tracking-normal font-sans text-4xl font-semibold leading-[1.3] text-blue-gray-900 !text-3xl !leading-snug lg:!text-4xl">Bienvenue sur Le Digital Master !</h2>
-                            <p class="block antialiased font-sans text-xl font-normal leading-relaxed text-inherit mt-2 w-full font-normal !text-gray-500 lg:w-5/12">Bienvenue sur votre tableau de bord personnalisé ! Chez Le Digital Master, nous sommes ravis de vous accueillir dans notre communauté. Vous êtes maintenant prêt à explorer toutes les fonctionnalités et services que nous offrons pour vous aider à créer et à gérer vos sites web de manière efficace.</p>
-                            <span target="_blank">Découvrez, <b>ce que vous pouvez faire</b></span>.
-                            <div class="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-3">
-
-                              <div class="relative flex flex-col bg-clip-border rounded-xl bg-transparent text-gray-700 shadow-md relative grid min-h-[30rem] items-end overflow-hidden rounded-xl"><img src="{{ asset('assets/images/picture11.jpg') }}" alt="bg" class="absolute inset-0 h-full w-full object-cover object-center" />
-                                <div class="absolute inset-0 bg-black/70"></div>
-                                <div class="p-6 relative flex flex-col justify-end">
-                                  <h4 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-white">Pack 1</h4>
-                                <p class="block antialiased font-sans text-base font-light leading-relaxed text-white my-2 font-normal">
-                                    Un page d'acceuil + <br>
-                                    1 à 4 pages catégories
-                                </p>
-                                <a href="{{ route('pack1') }}" class="bg-primary py-2 my-3 px-4 rounded-md transition-colors duration-300">
-                                    <p class="text-white text-center">Prendre le pack</p>
-                                </a>
-                                </div>
-                              </div>
-                              <div class="relative flex flex-col bg-clip-border rounded-xl bg-transparent text-gray-700 shadow-md relative grid min-h-[30rem] items-end overflow-hidden rounded-xl"><img src="{{ asset('assets/images/picture13.jpg') }}" alt="bg" class="absolute inset-0 h-full w-full object-cover object-center" />
-                                <div class="absolute inset-0 bg-black/70"></div>
-                                <div class="p-6 relative flex flex-col justify-end">
-                                  <h4 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-white">Pack 2</h4>
-                                  <p class="block antialiased font-sans text-base font-light leading-relaxed text-white my-2 font-normal">
-                                    Une page d'acceuil + <br>
-                                    1 à 4 pages catégories +<br>
-                                    Page complément + <br>
-                                    Une barre de recherche <br>
-                                  </p>
-                                  <a href="{{ route('pack2') }}" class="bg-primary py-2 my-3 px-4 rounded-md transition-colors duration-300">
-                                    <p class="text-white text-center">Prendre le pack</p>
-                                </a>
-                                </div>
-                              </div>
-                              <div class="relative flex flex-col bg-clip-border rounded-xl bg-transparent text-gray-700 shadow-md relative grid min-h-[30rem] items-end overflow-hidden rounded-xl"><img src="{{ asset('assets/images/picture14.jpg') }}" alt="bg" class="absolute inset-0 h-full w-full object-cover object-center" />
-                                <div class="absolute inset-0 bg-black/70"></div>
-                                <div class="p-6 relative flex flex-col justify-end">
-                                  <h4 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-white">Pack 3</h4>
-                                  <p class="block antialiased font-sans text-base font-light leading-relaxed text-white my-2 font-normal">
-                                    Une page d'acceuil + <br>
-                                    4 à 6 pages catégories + <br>
-                                    Page complément   + <br>
-                                    Une barre de recherche  <br>
-                                  </p>
-                                  <a href="{{ route('pack3') }}" class="bg-primary py-2 my-3 px-4 rounded-md transition-colors duration-300">
-                                    <p class="text-white text-center">Prendre le pack</p>
-                                </a>
-                                </div>
-                              </div>
-                              <div class="relative flex flex-col bg-clip-border rounded-xl bg-transparent text-gray-700 shadow-md relative grid min-h-[30rem] items-end overflow-hidden rounded-xl"><img src="{{ asset('assets/images/picture15.jpg') }}" alt="bg" class="absolute inset-0 h-full w-full object-cover object-center" />
-                                <div class="absolute inset-0 bg-black/70"></div>
-                                <div class="p-6 relative flex flex-col justify-end">
-                                  <h4 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-white">Pack 4</h4>
-                                  <p class="block antialiased font-sans text-base font-light leading-relaxed text-white my-2 font-normal">
-                                    Pack 3 + <br>
-                                    Option de commande  <br>
-                                  </p>
-                                  <a href="{{ route('pack4') }}" class="bg-primary py-2 my-3 px-4 rounded-md transition-colors duration-300">
-                                    <p class="text-white text-center">Prendre le pack</p>
-                                </a>
-                                </div>
-                              </div>
-                              <div class="relative flex flex-col bg-clip-border rounded-xl bg-transparent text-gray-700 shadow-md relative grid min-h-[30rem] items-end overflow-hidden rounded-xl"><img src="{{ asset('assets/images/picture16.jpg') }}" alt="bg" class="absolute inset-0 h-full w-full object-cover object-center" />
-                                <div class="absolute inset-0 bg-black/70"></div>
-                                <div class="p-6 relative flex flex-col justify-end">
-                                  <h4 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-white">Pack 5</h4>
-                                  <p class="block antialiased font-sans text-base font-light leading-relaxed text-white my-2 font-normal">
-                                    Page d'acceuil <br>
-                                    Barre de recherche + <br>
-                                    6 à 10 pages catégories + <br>
-                                    Option de commande
-                                  </p>
-                                  <a href="{{ route('pack5') }}" class="bg-primary py-2 my-3 px-4 rounded-md transition-colors duration-300">
-                                    <p class="text-white text-center">New Project</p>
-                                </a>
-                                </div>
-                              </div>
-                              <div class="relative flex flex-col bg-clip-border rounded-xl bg-transparent text-gray-700 shadow-md relative grid min-h-[30rem] items-end overflow-hidden rounded-xl"><img src="{{ asset('assets/images/picture10.jpg') }}" alt="bg" class="absolute inset-0 h-full w-full object-cover object-center" />
-                                <div class="absolute inset-0 bg-black/70"></div>
-                                <div class="p-6 relative flex flex-col justify-end">
-                                  <h4 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-white">Pack 5</h4>
-                                  <p class="block antialiased font-sans text-base font-light leading-relaxed text-white my-2 font-normal">
-                                    Site E-commerce + <br>
-                                    Option de commande + <br>
-                                    Option de payement <br>
-                                  </p>
-                                  <a href="{{ route('pack6') }}" class="bg-primary py-2 my-3 px-4 rounded-md transition-colors duration-300">
-                                    <p class="text-white text-center">New Project</p>
-                                </a>
-                                </div>
-                              </div>
-                            </div>
-                        </section>
-
 
                     </div>
 

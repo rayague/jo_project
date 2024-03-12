@@ -5,10 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class rendezvous extends Model
+class Pack extends Model
 {
     use HasFactory;
 
-    protected $table = 'rendezvouses';
-    protected $fillable = ['rdv_date', 'rdv_hour', 'rdv_description', 'pack'];
+    protected $fillable = ['title', 'contenu', 'image'];
 }

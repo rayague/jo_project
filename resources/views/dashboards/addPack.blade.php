@@ -28,7 +28,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion " id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-warning sidebar sidebar-dark accordion " id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
@@ -64,7 +64,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Clients</h6>
                         <a class="collapse-item" href="{{ route('addPack') }}">Ajouter un Pack</a>
-                        <a class="collapse-item" href="{{ route('sendNotifsClients') }}">Envoyer une notification</a>
+                        {{-- <a class="collapse-item" href="{{ route('sendNotifsClients') }}">Envoyer une notification</a> --}}
                         <a class="collapse-item" href="{{ route('seeNotifsClients') }}">Voir les notifications</a>
                     </div>
                 </div>
@@ -203,9 +203,11 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                @if(Auth::check())
+                                    <p class="mr-2 d-none d-lg-inline text-gray-600 small"> {{ Auth::user()->name }}</p>
+                                @else
+                                    <p class="mr-2 d-none d-lg-inline text-gray-600 small">Veuillez vous connecter.</p>
+                                @endif
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -248,6 +250,11 @@
 
                         <!-- Content Column -->
                         <div class="col-lg-12 mb-4">
+                            @if(session()->has('success'))
+                                <div class="alert alert-success text-center">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
 
 
                             <div class="container-fluid text-light">
@@ -257,19 +264,20 @@
                                     <div class="col-lg-12">
 
                                         <!-- Circle Buttons -->
-                                            <div class="container bg-gradient-secondary rounded my-3 shadow-lg py-3">
-                                                <form action="/action_page.php">
+                                            <div class="container rounded my-3 shadow-lg py-3">
+                                                <form action="{{ route('storePack') }}" method="POST" enctype="multipart/form-data">
+                                                    @csrf
                                                     <div class="mb-3 mt-3">
-                                                      <label for="email" class="form-label">Pack</label>
-                                                      <input type="email" class="form-control py-4" id="email" placeholder="Pack 5" name="email">
+                                                      <label for="title" class="form-label">Pack</label>
+                                                      <input type="text" class="form-control py-4" id="title" placeholder="Pack 5" name="title" required>
                                                     </div>
                                                     <div class="mb-3 row=30">
-                                                      <label for="pwd" class="form-label">Description du Pack</label>
-                                                      <input type="text" class="form-control py-4" id="pwd" placeholder="Veillez entrer la description de pack" name="pswd">
+                                                      <label for="contenu" class="form-label">Description du Pack</label>
+                                                      <textarea type="text" class="form-control py-4" row="5" id="contenu" placeholder="Veillez entrer la description de pack" name="contenu" required></textarea>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="pwd" class="form-label">Choisir une image descriptive</label>
-                                                        <input type="file" class="form-control" id="pwd" placeholder="choisissez un fichier" name="pswd">
+                                                        <input type="file" class="form-control" id="image" placeholder="choisissez un fichier" name="image" required>
                                                       </div>
                                                     <button type="submit" class="btn btn-success col-12 p-3 mt-5">Ajouter</button>
                                                 </form>

@@ -151,10 +151,10 @@
               <div class="row align-items-md-stretch">
                 <div class="col-md-12">
                   <div class="h-100 p-5 text-bg-warning rounded-3">
-                    <p><span class="fs-2">Démarquez-vous en Ligne avec Votre Site Web Unique</span> <br>
+                    <p><span class="fs-2">Inscrivez-vous en tant que Client pour vous demarquer du Web.</span> <br>
 
                       Votre présence en ligne est la vitrine numérique de votre entreprise. Chez LeDigitalMaster, nous transformons des idées en expériences en ligne exceptionnelles. Imaginez un site web qui reflète parfaitement votre identité, attire votre public cible et génère des résultats tangibles.</p>
-                    <a class="btn btn-outline-dark" href="{{ route('nousContacter') }}" type="button">Commander un site web</a>
+                    <a class="btn btn-outline-dark" href="{{ route('login') }}" type="button">Commander un site web</a>
                   </div>
                 </div>
               </div>
@@ -233,16 +233,16 @@
 
             <div class="container wrapper" style="margin-bottom: 90px; position: relative;">
 
-                            @if(session('success'))
+                            {{-- @if(session('success'))
                                 <div class="alert alert-success">
                                     {{ session('success') }}
                                 </div>
-                            @endif
+                            @endif --}}
 
                 <i id="left" class="fa-solid fa-angle-left carousel-control"></i>
 
                 <ul class="carousel container">
-                    {{-- <li class="card">
+                    <li class="card">
                         <div class="img"><img src="{{ asset('assets/images/svg2.svg') }}" alt="img" draggable="false"></div>
                         <h2>Martin Z.</h2>
                         <span>LeDigitalMaster a transformé ma vision en une réalité en ligne éblouissante ! </span>
@@ -271,15 +271,15 @@
                         <div class="img"><img src="{{ asset('assets/images/svg2.svg') }}" alt="img" draggable="false"></div>
                         <h2>David F.</h2>
                         <span>Une équipe passionnée et dédiée qui a su faire de notre site web bien plus qu'une simple plateforme en ligne.</span>
-                    </li> --}}
+                    </li>
 
-                    @foreach($avis as $avis)
+                    {{-- @foreach($avis as $avis)
                         <div class="card container">
                             <div class="img"><img src="{{ asset('uploads/photos/' . $avis->avis_photo) }}" class="img-fluid" alt="img"></div>
                             <h2 class="container">{{ $avis->nom }} {{ $avis->prenom }}</h2>
                             <div class="container">{{ $avis->commentaires }}</div>
                         </div>
-                    @endforeach
+                    @endforeach --}}
                 </ul>
 
 
@@ -287,7 +287,7 @@
                 <i id="right" class="fa-solid fa-angle-right carousel-control"></i>
 
             </div>
-            <div class="bg-secondary p-4 mt-5 rounded-4 h-100 collapse" style="margin-inline: auto; height: 500px; width: 600px;"  id="temoignages">
+            {{-- <div class="bg-secondary p-4 mt-5 rounded-4 h-100 collapse" style="margin-inline: auto; height: 500px; width: 600px;"  id="temoignages">
                 <form action="{{ route('submit_avis') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
@@ -311,11 +311,11 @@
                     </div>
                     <button type="submit" class="btn btn-warning mb-3 py-3 px-4 w-100" >Poster votre avis</button>
                 </form>
-            </div>
+            </div> --}}
 
 
         </div>
-        <button type="button" class="btn btn-primary btn-lg d-block mx-auto mt-5 mb-5" data-bs-toggle="collapse" data-bs-target="#temoignages" aria-expanded="true">Ajouter votre avis</button>
+        {{-- <button type="button" class="btn btn-primary btn-lg d-block mx-auto mt-5 mb-5" data-bs-toggle="collapse" data-bs-target="#temoignages" aria-expanded="true">Ajouter votre avis</button> --}}
 
 
 

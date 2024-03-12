@@ -26,11 +26,11 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
 
+
         $request->authenticate();
 
         $request->session()->regenerate();
         $role = auth()->user()->role;
-
         // Rediriger en fonction du rôle
         switch ($role) {
             case 'etudiant':
@@ -40,8 +40,9 @@ class AuthenticatedSessionController extends Controller
             case 'redacteur':
                 return redirect()->route('redacteur');
             default:
-                // return view('home');
+            // return view('home');
         }
+
 
 
         return redirect()->intended(RouteServiceProvider::HOME);

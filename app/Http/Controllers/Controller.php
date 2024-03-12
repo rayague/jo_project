@@ -84,6 +84,7 @@ public function sendNotificationsAdmin(Request $request)
         'rdv_date' => 'required|date',
         'rdv_hour' => 'required|string',
         'rdv_description' => 'required|string',
+        'pack' => 'required|string',
     ]);
 
     // Création d'un nouveau rendez-vous
@@ -91,6 +92,7 @@ public function sendNotificationsAdmin(Request $request)
         'rdv_date' => $validatedData['rdv_date'],
         'rdv_hour' => $validatedData['rdv_hour'],
         'rdv_description' => $validatedData['rdv_description'],
+        'pack' => $validatedData['pack'],
     ]);
 
     // Vous pouvez également effectuer d'autres actions ici, comme l'envoi de notifications, etc.

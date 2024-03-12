@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\NotificationEtudiant;
 use App\Models\rendezvous;
 use Illuminate\Http\Request;
 
@@ -94,7 +95,8 @@ class ViewsController extends Controller
 
     public function etudiant()
     {
-        return view ('menu.etudiant');
+        $notifications_etudiants = NotificationEtudiant::all();
+        return view ('menu.etudiant', compact('notifications_etudiants'));
     }
 
     // public function marketingDigital()
@@ -151,7 +153,9 @@ class ViewsController extends Controller
 
     public function seeNotifsClients()
     {
-        return view ('dashboards.seeNotifsClients');
+        $rdvs = rendezvous::all();
+
+        return view ('dashboards.seeNotifsClients', compact('rdvs'));
     }
 
     public function seeNotifsEtudiants()
