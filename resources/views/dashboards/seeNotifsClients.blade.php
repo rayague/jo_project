@@ -220,16 +220,17 @@
                     @foreach ( $rdvs as $rdvs)
                         <div class="card mx-auto my-4" style="width: 18rem;">
                             <div class="card-body">
-                              <h5 class="card-title">Vous venez de recevoir une notification de : </h5>
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                  <img src="{{ asset('assets/images/message.png') }}" class="card-img-top" alt="...">
+
+                              <h5 class="card-title">De la part de {{ $rdvs->user_name }}</h5>
                             </div>
                             <ul class="list-group list-group-flush">
-                              <li class="list-group-item">{{ $rdvs->rdv_date }}</li>
-                              <li class="list-group-item">Votre heure :{{ $rdvs->rdv_hour }}</li>
-                              <li class="list-group-item">{{ $rdvs->rdv_description }}</</li>
+                              <li class="list-group-item">Vous avez un rendez pour :{{ $rdvs->rdv_date }}</li>
+                              <li class="list-group-item"> À :{{ $rdvs->rdv_hour }}</li>
+                              <li class="list-group-item">Description :{{ $rdvs->rdv_description }}</</li>
                             </ul>
                             <div class="card-body">
-                              <a href="#" class="text-danger fs-3 ">Vous avez choisit le : {{ $rdvs->pack }}</a>
+                              <a href="#" class="text-danger fs-3 ">Le : {{ $rdvs->pack }} a été choisit par </a>
                             </div>
                         </div>
 
@@ -272,7 +273,8 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
+                        <span class="text-primary">Copyright &copy; Le Digital Master</span>
+
                     </button>
                 </div>
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>

@@ -32,7 +32,7 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
-                <div class="sidebar-brand-text mx-3 text-warning">Le Digital Master</div>
+                <div class="sidebar-brand-text mx-3 text-light">Le Digital Master</div>
             </a>
 
             <!-- Divider -->
@@ -317,7 +317,8 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
+                        <span class="text-primary">Copyright &copy; Le Digital Master</span>
+
                     </button>
                 </div>
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>

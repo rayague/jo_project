@@ -34,7 +34,7 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
-                <div class="sidebar-brand-text mx-3 text-warning">Le Digital Master</div>
+                <div class="sidebar-brand-text mx-3 text-light">Le Digital Master</div>
             </a>
 
             <!-- Divider -->
@@ -46,44 +46,12 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span class="text-light">Administration</span></a>
             </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Interface
-            </div>
-
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span class="text-light fas">Section Client</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Clients</h6>
-                        <a class="collapse-item" href="{{ route('addPack') }}">Ajouter un Pack</a>
-                        <a class="collapse-item" href="{{ route('sendNotifsClients') }}">Envoyer une notification</a>
-                        <a class="collapse-item" href="{{ route('seeNotifsClients') }}">Voir les notifications</a>
-                    </div>
-                </div>
-            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Notifications</span></a>
-            </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -276,7 +244,7 @@
                                 Option de commande
                             </p>
                             <a href="{{ route('pack5') }}" class="bg-primary py-2 my-3 px-4 rounded-md transition-colors duration-300">
-                                <p class="text-white text-center">New Project</p>
+                                <p class="text-white text-center">Prendre le pack</p>
                             </a>
                             </div>
                         </div>
@@ -290,7 +258,7 @@
                                 Option de payement <br>
                             </p>
                             <a href="{{ route('pack6') }}" class="bg-primary py-2 my-3 px-4 rounded-md transition-colors duration-300">
-                                <p class="text-white text-center">New Project</p>
+                                <p class="text-white text-center">Prendre le pack</p>
                             </a>
                             </div>
                         </div>
@@ -309,7 +277,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span class="text-primary">Copyright &copy; Le Digital Master</span>
                     </div>
                 </div>
             </footer>
@@ -325,26 +293,6 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Bootstrap core JavaScript-->
     <script src=" {{ asset('assets/dashboard/vendor/jquery/jquery.min.js')}}"></script>

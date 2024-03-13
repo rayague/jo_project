@@ -191,13 +191,15 @@
                         <form action="{{ route('sendNotificationsAdmin') }}" method="POST">
                             @csrf
                         <h3>Ajouter un rendez-vous</h3>
+                    <a href="{{ route('client') }}" class="btn btn-warning">Revenir en arriere</a>
+
                         <input type="date" id="eventDate"
-                        name="rdv_date">  <br> <label for="">Choisissez une heure :</label>
+                        name="rdv_date" required>  <br> <label for="">Choisissez une heure :</label>
                         {{-- <input type="text"
                             id="eventTitle"
                             name="rdv_hour"
                             placeholder="Quelle heure choisissez-vous"> --}}
-                            <select name="rdv_hour" class="text-center mx-auto">
+                            <select name="rdv_hour" class="text-center mx-auto" required>
                                 <option value=0> 10 : 00 </option>
                                 <option value=1> 15 : 00 </option>
                                 <option value=2>18 : 00</option>
@@ -210,7 +212,7 @@
                         <input type="text"
                             id="eventDescription"
                             name="rdv_description"
-                            placeholder="A propos de votre rendez-vous"> <br>
+                            placeholder="A propos de votre rendez-vous" required> <br>
                                 <input type="hidden" name="pack" value="pack6">
                         <button type="submit">
                             Envoyer
@@ -219,6 +221,8 @@
                             <a href="{{ route('client') }}" class="btn btn-secondary m-4" >Dashbord</a>
                         </div> --}}
                     </form>
+                                        <a href="{{ route('client') }}" class="btn btn-primary my-3">Dashbord</a>
+
 
                         <!-- List to display reminders -->
                         @foreach ( $rdvs as $rdvs)
@@ -240,7 +244,7 @@
                                     {{-- <button class="delete-event" type="submit">Supprimer</button>
                                     <button class="delete-event" type="submit">Discuter sur whatsApp</button> --}}
                                 </form>
-                                                                <button class="delete-event" id="whatsapp-button" data-toggle="modal" data-target="#whatsappModal">Discuter sur WhatsApp</button>
+                                <button class="delete-event" id="whatsapp-button" data-toggle="modal" data-target="#whatsappModal">Discuter sur WhatsApp</button>
 
                         </li>
                     </ul>
@@ -248,33 +252,37 @@
                     </div>
                 </div>
                                 <div class="modal fade" id="whatsappModal" tabindex="-1" role="dialog" aria-labelledby="whatsappModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="whatsappModalLabel">Informations de Contact</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form id="contactForm">
-          <div class="form-group">
-            <label for="fullname">Nom et Prénom</label>
-            <input type="text" class="form-control" id="fullname" placeholder="Nom et Prénom">
-          </div>
-          <div class="form-group">
-            <label for="phone">Numéro de Téléphone</label>
-            <input type="tel" class="form-control" id="phone" placeholder="+22990909090">
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-        <button type="button" class="btn btn-primary" id="sendWhatsapp">Envoyer sur WhatsApp</button>
-      </div>
-    </div>
-  </div>
-</div>
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="whatsappModalLabel">Informations de Contact</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form id="contactForm">
+                                            <div class="form-group">
+                                                <label for="fullname">Nom et Prénom</label>
+                                                <input type="text" class="form-control" id="fullname" placeholder="Nom et Prénom">
+                                            </div>
+                            <div class="form-group">
+                                <label for="phone">Une description de votre message</label>
+                                <input type="text" class="form-control" id="message" placeholder="j'aimeras modifier mon pack">
+                            </div>
+                            <div class="form-group">
+                                {{-- <label for="phone">Numéro de Téléphone</label> --}}
+                                <input type="hidden" class="form-control" id="phone" value="+22995612461">
+                            </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                            <button type="button" class="btn btn-primary" id="sendWhatsapp">Envoyer sur WhatsApp</button>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </div>
                 <div id="right">
                     <h3 id="monthAndYear"></h3>
                     <div class="button-container-calendar">
@@ -330,7 +338,8 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span class="text-primary">Copyright &copy; Le Digital Master</span>
+
                     </div>
                 </div>
             </footer>
@@ -384,6 +393,32 @@
     <script src="{{ asset('assets/dashboard/js/demo/chart-area-demo.js')}} "></script>
     <script src=" {{ asset('assets/dashboard/js/demo/chart-pie-demo.js')}}"></script>
             <script src="{{ asset('assets/js/calendarPacK.js') }}"></script>
+                        <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    // Gestion du clic sur le bouton d'envoi sur WhatsApp
+                    document.getElementById("sendWhatsapp").addEventListener("click", function() {
+                        var fullname = document.getElementById("fullname").value;
+                        var phone = document.getElementById("phone").value;
+                        var message = document.getElementById("message").value;
+
+                        // Vérification si les champs ne sont pas vides
+                        if (fullname.trim() === "" || phone.trim() === "" || message.trim() === "") {
+                            alert("Veuillez remplir tous les champs !");
+                        } else {
+                            // Construction de l'URL pour l'API WhatsApp en incluant le numéro, le nom et le message
+                            var whatsappURL = "https://api.whatsapp.com/send?phone=" + phone + "&text=Bonjour%20" + fullname + "%2C%20" + encodeURIComponent(message);
+
+                            // Ouvrir WhatsApp dans une nouvelle fenêtre ou un nouvel onglet
+                            window.open(whatsappURL, "_blank");
+
+                            // Fermer le modal après l'envoi
+                            $('#whatsappModal').modal('hide');
+                        }
+                    });
+                });
+
+
+            </script>
                      <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha512-5+ZrrJcyx0S/SNb/zqfMGL6eiJz7HHadzTZPz2Nb2uY6U6V6iDw8nIzGxe3z6naJ1sNhP+2zg7JlG7FZ0MS4TA==" crossorigin="anonymous"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-k2ATUhrFtJ+gx0p7aajr9hAm1bSmkNUqO2+C/AMUfQTtR5LV6tP2stI/Di0DdIq0shWvYci2S8R8n7Cwv49D9w==" crossorigin="anonymous"></script>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" integrity="sha512-WzLzMSXBU5X+r+n7L7O5xKqQBUbxo9e/g8X4bVJBSEDSiI6f+CcmFqlgN1R7e1ZjfylOtp6f/06DRnlJeZFYrg==" crossorigin="anonymous" />

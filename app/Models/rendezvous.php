@@ -10,5 +10,5 @@ class rendezvous extends Model
     use HasFactory;
 
     protected $table = 'rendezvouses';
-    protected $fillable = ['rdv_date', 'rdv_hour', 'rdv_description', 'pack'];
+    protected $fillable = ['rdv_date', 'user_name', 'rdv_hour', 'rdv_description', 'pack'];
 }

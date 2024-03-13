@@ -254,12 +254,12 @@
                             @csrf
                         <h3>Ajouter un rendez-vous</h3>
                         <input type="date" id="eventDate"
-                        name="rdv_date">  <br> <label for="">Choisissez une heure :</label>
+                        name="rdv_date" required>  <br> <label for="">Choisissez une heure :</label>
                         {{-- <input type="text"
                             id="eventTitle"
                             name="rdv_hour"
                             placeholder="Quelle heure choisissez-vous"> --}}
-                            <select name="rdv_hour" class="text-center mx-auto">
+                            <select name="rdv_hour" class="text-center mx-auto" required>
                                 <option value=0> 10 : 00 </option>
                                 <option value=1> 15 : 00 </option>
                                 <option value=2>18 : 00</option>
@@ -272,7 +272,7 @@
                         <input type="text"
                             id="eventDescription"
                             name="rdv_description"
-                            placeholder="A propos de votre rendez-vous"> <br>
+                            placeholder="A propos de votre rendez-vous" required> <br>
                                 <input type="hidden" name="pack" value="pack2">
                         <button type="submit">
                             Envoyer
@@ -281,6 +281,8 @@
                             <a href="{{ route('client') }}" class="btn btn-secondary m-4" >Dashbord</a>
                         </div> --}}
                     </form>
+                                        <a href="{{ route('client') }}" class="btn btn-primary my-3">Dashbord</a>
+
 
                         <!-- List to display reminders -->
                         @foreach ( $rdvs as $rdvs)
@@ -301,7 +303,8 @@
                                     <!-- Votre formulaire -->
                                     {{-- <button class="delete-event" type="submit">Supprimer</button> --}}
                                 </form>
-                                                                <button class="delete-event" id="whatsapp-button" data-toggle="modal" data-target="#whatsappModal">Discuter sur WhatsApp</button>
+
+                    <button class="delete-event" id="whatsapp-button" data-toggle="modal" data-target="#whatsappModal">Discuter sur WhatsApp</button>
 
                         </li>
                     </ul>
@@ -323,10 +326,14 @@
             <label for="fullname">Nom et Prénom</label>
             <input type="text" class="form-control" id="fullname" placeholder="Nom et Prénom">
           </div>
-          <div class="form-group">
-            <label for="phone">Numéro de Téléphone</label>
-            <input type="tel" class="form-control" id="phone" placeholder="+22990909090">
-          </div>
+                            <div class="form-group">
+                                <label for="phone">Une description de votre message</label>
+                                <input type="text" class="form-control" id="message" placeholder="j'aimeras modifier mon pack">
+                            </div>
+                            <div class="form-group">
+                                {{-- <label for="phone">Numéro de Téléphone</label> --}}
+                                <input type="hidden" class="form-control" id="phone" value="+22995612461">
+                            </div>
         </form>
       </div>
       <div class="modal-footer">
@@ -416,7 +423,8 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
+                        <span class="text-primary">Copyright &copy; Le Digital Master</span>
+
                     </button>
                 </div>
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
@@ -507,6 +515,32 @@
         </div>
         <!-- Include the JavaScript file for the calendar functionality -->
         <script src="{{ asset('assets/js/calendarPacK.js') }}"></script>
+                    <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    // Gestion du clic sur le bouton d'envoi sur WhatsApp
+                    document.getElementById("sendWhatsapp").addEventListener("click", function() {
+                        var fullname = document.getElementById("fullname").value;
+                        var phone = document.getElementById("phone").value;
+                        var message = document.getElementById("message").value;
+
+                        // Vérification si les champs ne sont pas vides
+                        if (fullname.trim() === "" || phone.trim() === "" || message.trim() === "") {
+                            alert("Veuillez remplir tous les champs !");
+                        } else {
+                            // Construction de l'URL pour l'API WhatsApp en incluant le numéro, le nom et le message
+                            var whatsappURL = "https://api.whatsapp.com/send?phone=" + phone + "&text=Bonjour%20" + fullname + "%2C%20" + encodeURIComponent(message);
+
+                            // Ouvrir WhatsApp dans une nouvelle fenêtre ou un nouvel onglet
+                            window.open(whatsappURL, "_blank");
+
+                            // Fermer le modal après l'envoi
+                            $('#whatsappModal').modal('hide');
+                        }
+                    });
+                });
+
+
+            </script>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>

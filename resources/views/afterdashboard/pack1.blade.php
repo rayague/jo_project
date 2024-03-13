@@ -52,30 +52,6 @@
             </li>
 
             <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Interface
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span class="text-light fas">Section Client</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Clients</h6>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
             <!-- Sidebar Toggler (Sidebar) -->
@@ -210,12 +186,12 @@
                             @csrf
                         <h3>Ajouter un rendez-vous</h3>
                         <input type="date" id="eventDate"
-                        name="rdv_date">  <br> <label for="">Choisissez une heure :</label>
+                        name="rdv_date" required>  <br> <label for="">Choisissez une heure :</label>
                         {{-- <input type="text"
                             id="eventTitle"
                             name="rdv_hour"
                             placeholder="Quelle heure choisissez-vous"> --}}
-                            <select name="rdv_hour" class="text-center mx-auto">
+                            <select name="rdv_hour" class="text-center mx-auto" required>
                                 <option value="10 : 00"> 10 : 00 </option>
                                 <option value="15 : 00 "> 15 : 00 </option>
                                 <option value="18 : 00 ">18 : 00</option>
@@ -227,8 +203,8 @@
                         <input type="text"
                             id="eventDescription"
                             name="rdv_description"
-                            placeholder="A propos de votre rendez-vous"> <br>
-                                <input type="hidden" name="pack" value="pack1">
+                            placeholder="A propos de votre rendez-vous" required> <br>
+                                <input type="hidden" name="pack" value="pack1" required>
                         <button type="submit">
                             Envoyer
                         </button>
@@ -236,6 +212,8 @@
                             <a href="{{ route('client') }}" class="btn btn-secondary m-4" >Dashbord</a>
                         </div> --}}
                     </form>
+                    <a href="{{ route('client') }}" class="btn btn-primary my-3">Dashbord</a>
+
 
                         <!-- List to display reminders -->
                         @foreach ( $rdvs as $rdvs)
@@ -243,7 +221,7 @@
                         <ul class="container-fluid bg-gray-50 text-light mt-4 rounded" >
                             <li data-event-id="1" class="container bg-secondary rounded-3 p-4   ">
 
-                                <h3 class="text-light fw-bolder fs-4">Voici votre date</h3>
+                                <h3 class="text-light fw-bolder fs-4">Voici votre date pour vous {{ $user->name }}</h3>
                                 <strong class="text-warning fs-5" >{{ $rdvs->rdv_date }}</strong> <br>
                                  <span class="fs-bold fs-5">Votre heure :{{ $rdvs->rdv_hour }}</span> <br>
                                 <span class="fs-5">{{ $rdvs->rdv_description }}</span> <br>
@@ -263,33 +241,37 @@
                 </div>
 
                 <div class="modal fade" id="whatsappModal" tabindex="-1" role="dialog" aria-labelledby="whatsappModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="whatsappModalLabel">Informations de Contact</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form id="contactForm">
-          <div class="form-group">
-            <label for="fullname">Nom et Prénom</label>
-            <input type="text" class="form-control" id="fullname" placeholder="Nom et Prénom">
-          </div>
-          <div class="form-group">
-            <label for="phone">Numéro de Téléphone</label>
-            <input type="tel" class="form-control" id="phone" placeholder="+22990909090">
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-        <button type="button" class="btn btn-primary" id="sendWhatsapp">Envoyer sur WhatsApp</button>
-      </div>
-    </div>
-  </div>
-</div>
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="whatsappModalLabel">Informations de Contact</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="contactForm">
+                            <div class="form-group">
+                                <label for="fullname">Nom et Prénom</label>
+                                <input type="text" class="form-control" id="fullname" placeholder="Nom et Prénom">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Une description de votre message</label>
+                                <input type="text" class="form-control" id="message" placeholder="j'aimeras modifier mon pack">
+                            </div>
+                            <div class="form-group">
+                                {{-- <label for="phone">Numéro de Téléphone</label> --}}
+                                <input type="hidden" class="form-control" id="phone" value="+22995612461">
+                            </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                            <button type="button" class="btn btn-primary" id="sendWhatsapp">Envoyer sur WhatsApp</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
                 <div id="right">
                     <h3 id="monthAndYear"></h3>
                     <div class="button-container-calendar">
@@ -345,7 +327,8 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span class="text-primary">Copyright &copy; Le Digital Master</span>
+
                     </div>
                 </div>
             </footer>
@@ -401,25 +384,28 @@
             <script src="{{ asset('assets/js/calendarPacK.js') }}"></script>
             <script>
                 document.addEventListener("DOMContentLoaded", function() {
-    // Gestion du clic sur le bouton d'envoi sur WhatsApp
-    document.getElementById("sendWhatsapp").addEventListener("click", function() {
-        var fullname = document.getElementById("fullname").value;
-        var phone = document.getElementById("phone").value;
+                    // Gestion du clic sur le bouton d'envoi sur WhatsApp
+                    document.getElementById("sendWhatsapp").addEventListener("click", function() {
+                        var fullname = document.getElementById("fullname").value;
+                        var phone = document.getElementById("phone").value;
+                        var message = document.getElementById("message").value;
 
-        // Vérification si les champs ne sont pas vides
-        if (fullname.trim() === "" || phone.trim() === "") {
-            alert("Veuillez remplir tous les champs !");
-        } else {
-            // Remplacer l'URL par votre lien WhatsApp en incluant le numéro et le nom de la personne
-            var whatsappURL = "https://api.whatsapp.com/send?phone=" + phone + "&text=Bonjour%20" + fullname + "%2C%20"; // Le message peut être personnalisé selon vos besoins
-            // Ouvrir WhatsApp dans une nouvelle fenêtre ou un nouvel onglet
-            window.open(whatsappURL, "_blank");
+                        // Vérification si les champs ne sont pas vides
+                        if (fullname.trim() === "" || phone.trim() === "" || message.trim() === "") {
+                            alert("Veuillez remplir tous les champs !");
+                        } else {
+                            // Construction de l'URL pour l'API WhatsApp en incluant le numéro, le nom et le message
+                            var whatsappURL = "https://api.whatsapp.com/send?phone=" + phone + "&text=Bonjour%20" + fullname + "%2C%20" + encodeURIComponent(message);
 
-            // Fermer le modal après l'envoi
-            $('#whatsappModal').modal('hide');
-        }
-    });
-});
+                            // Ouvrir WhatsApp dans une nouvelle fenêtre ou un nouvel onglet
+                            window.open(whatsappURL, "_blank");
+
+                            // Fermer le modal après l'envoi
+                            $('#whatsappModal').modal('hide');
+                        }
+                    });
+                });
+
 
             </script>
                      <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha512-5+ZrrJcyx0S/SNb/zqfMGL6eiJz7HHadzTZPz2Nb2uY6U6V6iDw8nIzGxe3z6naJ1sNhP+2zg7JlG7FZ0MS4TA==" crossorigin="anonymous"></script>

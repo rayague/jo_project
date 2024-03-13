@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Avis;
+use App\Models\User;
 use App\Models\Formation;
 use App\Models\rendezvous;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -86,9 +88,12 @@ public function sendNotificationsAdmin(Request $request)
         'rdv_description' => 'required|string',
         'pack' => 'required|string',
     ]);
+    $user = Auth::user();
+    $userName = $user->name;
 
     // Création d'un nouveau rendez-vous
     rendezvous::create([
+        'user_name' => $userName,
         'rdv_date' => $validatedData['rdv_date'],
         'rdv_hour' => $validatedData['rdv_hour'],
         'rdv_description' => $validatedData['rdv_description'],

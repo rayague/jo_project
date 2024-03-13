@@ -122,10 +122,11 @@ class ViewsController extends Controller
     public function pack1()
     {
         // Récupérer tous les rendez-vous
+        $user = auth()->user();
         $rdvs = rendezvous::all();
 
         // Passer les rendez-vous à la vue
-        return view('afterdashboard.pack1', compact('rdvs'));
+        return view('afterdashboard.pack1', compact('rdvs', 'user'));
     }
 
 
@@ -154,18 +155,21 @@ class ViewsController extends Controller
     public function seeNotifsClients()
     {
         $rdvs = rendezvous::all();
+        $user = auth()->user();
 
-        return view ('dashboards.seeNotifsClients', compact('rdvs'));
+        return view ('dashboards.seeNotifsClients', compact('rdvs', 'user'));
     }
 
     public function seeNotifsEtudiants()
     {
-        return view ('dashboards.seeNotifsEtudiants');
+        $user = auth()->user();
+        return view ('dashboards.seeNotifsEtudiants', compact('user'));
     }
 
     public function seeNotifsRedacteurs()
     {
-        return view ('dashboards.seeNotifsRedacteurs');
+        $user = auth()->user();
+        return view ('dashboards.seeNotifsRedacteurs', compact('user'));
     }
 
     public function addFormations()
